@@ -4,7 +4,7 @@
 
 ## Features
 
-- Authenticate with your YouTube account using OAuth 2.0.
+- Authenticate with your YouTube account using `OAuth 2.0`.
 - Create a new playlist or choose an existing playlist on your YouTube account.
 - Load a list of video URLs from a text file.
 - Add videos to the selected playlist, skipping duplicates.
