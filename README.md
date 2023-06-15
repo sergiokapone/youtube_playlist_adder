@@ -97,6 +97,12 @@ To authenticate with the YouTube API and obtain the necessary credentials, follo
 
 Note: The `credentials.pickle` file will be used for subsequent authentication to avoid the need to authenticate every time you run the script.
 
+## Quota Limits
+
+The YouTube Data API enforces certain quota limits to prevent abuse and ensure fair usage. Quota limits define the maximum number of requests your application can make to the API within a specific time period. If you exceed these limits, the API will return a 403 Forbidden error with the message "The request cannot be completed because you have exceeded your quota."
+
+If you encounter a 403 Forbidden error with the quotaExceeded reason, you will need to wait until your quota resets or your request for additional quota is approved.
+
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for more details.

@@ -96,4 +96,4 @@ try:
 except HttpError as e:
     error_response = json.loads(e.content.decode("utf-8"))
     error_code = error_response.get('error', {}).get('code')
-    logger.error(f"An error occurred. Error code: {error_code}")
+    logger.error(f"""An error occurred. Error code: {error_code}. The request cannot be completed because you have exceeded your quota.""")
