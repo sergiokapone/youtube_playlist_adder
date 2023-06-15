@@ -4,7 +4,6 @@
 
 ## Features
 
-- Authenticate with your YouTube account using `OAuth 2.0`.
 - Create a new playlist or choose an existing playlist on your YouTube account.
 - Load a list of video URLs from a text file.
 - Add videos to the selected playlist, skipping duplicates.
@@ -25,7 +24,7 @@ git clone https://github.com/sergiokapone/youtube_playlist_adder.git
 ## Usage
 
 1. Open the `config.ini` file and set the desired playlist name (`PLAYLIST`) and the path to the text file containing the video URLs (`URLS`).
-2. Ensure that you have a valid `client_secret.json` file and a `credentials.pickle` file in the project directory. If not, follow the instructions in the "Authentication" section below to obtain the required credentials.
+2. Ensure that you have a valid `client_secret.json` file in the project directory. If not, follow the instructions in the "Authentication" section below to obtain the required credentials.
 3. Populate the text file specified in `URLS` with the YouTube video URLs you want to add to the playlist. Each URL should be on a new line.
 
 Example of `urls.txt`:
