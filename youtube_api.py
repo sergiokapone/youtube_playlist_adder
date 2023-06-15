@@ -4,13 +4,15 @@ from urllib.parse import urlparse, parse_qs
 
 
 def create_youtube_client(api_service_name, api_version, credentials):
-    # Create a YouTube API client
+    """Create a YouTube API client."""
+
     youtube = build(api_service_name, api_version, credentials=credentials)
     return youtube
 
 
 def get_playlist_id(youtube, playlist_name):
-    # Get the playlist ID by name
+    """Get the playlist ID by name."""
+
     playlists_response = youtube.playlists().list(part="snippet", mine=True).execute()
     playlists = playlists_response.get("items", [])
     playlist_id = None
@@ -22,7 +24,8 @@ def get_playlist_id(youtube, playlist_name):
 
 
 def create_playlist(youtube, playlist_name):
-    # Create a playlist if it doesn't exist
+    """Create a playlist if it doesn't exist."""
+
     playlist_response = youtube.playlists().insert(
         part="snippet,status",
         body={
@@ -40,7 +43,8 @@ def create_playlist(youtube, playlist_name):
 
 
 def add_video_to_playlist(youtube, playlist_id, video_id):
-    # Add a video to the playlist
+    """Add a video to the playlist."""
+
     playlist_items_response = youtube.playlistItems().list(
         part="snippet",
         playlistId=playlist_id,
@@ -65,7 +69,8 @@ def add_video_to_playlist(youtube, playlist_id, video_id):
 
 
 def extract_video_id(url):
-    # Extract video ID from URL
+    """Extract video ID from URL."""
+    
     parsed_url = urlparse(url)
     if parsed_url.netloc == "youtu.be":
         video_id = os.path.split(parsed_url.path)[1]

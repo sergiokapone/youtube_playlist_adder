@@ -3,12 +3,13 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 
 
 def authenticate(scopes, client_secrets_file, credentials_file):
-    # Checking for saved credentials
+    """Checking for saved credentials."""
+
     try:
         # Downloading saved credentials
         with open(credentials_file, "rb") as creds_file:
             credentials = pickle.load(creds_file)
-        # Проверка срока действия учетных данных
+        # Checking the validity of credentials
         if credentials and credentials.valid:
             print("Saved credentials are used.")
         else:
