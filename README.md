@@ -62,10 +62,38 @@ python main.py -p MyPlaylist -u urls.txt
 
 To authenticate with the YouTube API and obtain the necessary credentials, follow these steps:
 
-1. Create a project in the [Google Developer Console](https://console.developers.google.com/).
-2. Enable the YouTube Data API for your project.
-3. Create credentials for the project and download the `client_secret.json` file.
-4. Place the `client_secret.json` file in the project directory.
+1. Create a project in the [Google Developer Console](https://console.developers.google.com/):
+
+- Go to the [Google Developer Console](https://console.developers.google.com/) website.
+- Sign in with your Google account or create a new account if needed.
+- Click on the "Select a project" dropdown at the top of the page and click the "+ New Project" button.
+- Enter a name for your project and click the "Create" button.
+
+2. Enable the YouTube Data API for your project:
+
+- In the Google Developer Console, navigate to your project by clicking on the project name in the top bar.
+- On the left sidebar, click on "APIs & Services" and then "Library".
+- Search for "YouTube Data API" and click on it in the results.
+- Click the "Enable" button to enable the API for your project.
+
+3. Create credentials for the project and download the `client_secret.json` file:
+
+- In the Google Developer Console, navigate to your project by clicking on the project name in the top bar.
+- On the left sidebar, click on "APIs & Services" and then "Credentials".
+- Click the "+ Create Credentials" button and select "OAuth client ID" from the dropdown.
+- Select "Web application" as the application type.
+- Enter a name for the OAuth 2.0 client ID.
+- In the "Authorized JavaScript origins" field, enter the URL `http://localhost:8080` (if running locally) or the URL of your deployed application.
+- In the "Authorized redirect URIs" field, enter the URL `http://localhost:8080/authorized` (if running locally) or the URL of your deployed application followed by `/authorized`.
+- Click the "Create" button to create the OAuth client ID.
+- On the next screen, you'll see your newly created OAuth client ID along with the client ID and client secret. Make a note of these as they will be used in your authentication process.
+- Click the "OK" button to close the dialog.
+- Click the download icon next to your client ID to download the `client_secret.json` file. Save this file in the project directory.
+
+4. Place the `client_secret.json` file in the project directory:
+
+- After downloading the `client_secret.json` file, place it in the project directory where the `main.py` script is located.
+
 5. Run the `main.py` script. It will guide you through the authentication process and generate the `credentials.pickle` file.
 
 Note: The `credentials.pickle` file will be used for subsequent authentication to avoid the need to authenticate every time you run the script.
