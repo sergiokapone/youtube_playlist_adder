@@ -1,6 +1,9 @@
+import logging
 import argparse
 import configparser
 import json
+
+import colorlog
 
 from auth import authenticate
 from youtube_api import (
@@ -13,6 +16,27 @@ from youtube_api import (
 )
 
 from googleapiclient.errors import HttpError
+
+color_formatter = colorlog.ColoredFormatter(
+    '%(log_color)s%(asctime)s - %(message)s',
+    log_colors={
+        'DEBUG': 'cyan',
+        'INFO': 'green',
+        'WARNING': 'yellow',
+        'ERROR': 'red',
+        'CRITICAL': 'red,bg_white',
+    }
+)
+
+
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(color_formatter)
+
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+logger.addHandler(console_handler)
+
 
 
 config = configparser.ConfigParser()
@@ -57,7 +81,7 @@ try:
             for video in playlist_videos:
                 url = f"https://www.youtube.com/watch?v={video}"
                 f.write(url + '\n')
-        print(f"Videos downloaded successfully to {args.download}")
+        logger.info(f"Videos downloaded successfully to {args.download}")
 
     # Uploading videos from a file to playlist
     if args.upload:
@@ -67,9 +91,9 @@ try:
             video_id = extract_video_id(url)
             if video_id:
                 add_video_to_playlist(youtube, playlist_id, video_id)
-        print(f"Videos uploaded successfully from {args.upload} to playlist")
+        logger.info(f"Videos uploaded successfully from {args.upload} to playlist")
 
 except HttpError as e:
     error_response = json.loads(e.content.decode("utf-8"))
     error_code = error_response.get('error', {}).get('code')
-    print(f"An error occurred. Error code: {error_code}")
+    logger.error(f"An error occurred. Error code: {error_code}")
