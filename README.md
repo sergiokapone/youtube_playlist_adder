@@ -41,16 +41,16 @@ https://www.youtube.com/watch?v=JOzhL0Y1GAE
 
 Example usage:
 
-To download videos from the playlist with name `Playlist` to a file `urls.txt`:
+To download videos from the playlist with name `MyPlaylist` to a file `urls.txt`:
 
 ```shell
-python main.py -p PlayListName -d urls.txt
+python main.py -p MyPlaylist -d urls.txt
 ```
 
-To upload videos from a file with name `Playlist` to a file `urls.txt`:
+To upload videos from a file with name `MyPlaylist` to a file `urls.txt`:
 
 ```shell
-python main.py -p PlayListName -u urls.txt
+python main.py -p MyPlaylist -u urls.txt
 ```
 
 5. The script will prompt you to authenticate with your YouTube account if necessary. Follow the instructions in the console to complete the authentication process.
