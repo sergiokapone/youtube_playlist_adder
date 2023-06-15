@@ -13,8 +13,13 @@
 ## Installation
 
 1. Clone or download the repository to your local machine.
-2. Install the required dependencies by running `pip install -r requirements.txt`.
-3. Obtain the client secrets file (`client_secret.json`) for your YouTube API project and place it in the project directory.
+
+```bash
+git clone https://github.com/sergiokapone/youtube_playlist_adder.git
+```
+
+2. Install the required dependencies by running `pipenv install`.
+3. Obtain the client secrets file (`client_secret.json`) for your `YouTube API` project and place it in the project directory.
 4. Make sure you have a text file containing the list of video URLs (one URL per line) that you want to add to the playlist.
 
 ## Usage
