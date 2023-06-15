@@ -25,13 +25,33 @@ git clone https://github.com/sergiokapone/youtube_playlist_adder.git
 ## Usage
 
 1. Open the `config.ini` file and set the desired playlist name (`PLAYLIST`) and the path to the text file containing the video URLs (`URLS`).
-2. Run the `main.py` script using `python main.py`.
-3. The script will prompt you to authenticate with your YouTube account if necessary. Follow the instructions in the console to complete the authentication process.
-4. The script will create the playlist (if it doesn't exist) or use the existing playlist with the specified name.
-5. It will then add the videos from the URL list to the playlist, skipping any duplicates.
-6. You will see the status of each video being added or skipped in the console output.
+2. Ensure that you have a valid `client_secret.json` file and a `credentials.pickle` file in the project directory. If not, follow the instructions in the "Authentication" section below to obtain the required credentials.
+3. Populate the text file specified in `URLS` with the YouTube video URLs you want to add to the playlist. Each URL should be on a new line.
 
-Note: The script uses `OAuth 2.0` to authenticate with the YouTube API, so you will need to have a Google account and create a `YouTube API` project in the Google Developer Console to obtain the necessary credentials.
+Example of `urls.txt`:
+
+```text
+https://www.youtube.com/watch?v=VD8Xpl1_OM0
+https://www.youtube.com/watch?v=JOzhL0Y1GAE
+```
+
+4. Run the `main.py` script using `python main.py`.
+5. The script will prompt you to authenticate with your YouTube account if necessary. Follow the instructions in the console to complete the authentication process.
+6. The script will create the playlist (if it doesn't exist) or use the existing playlist with the specified name.
+7. It will then add the videos from the URL list to the playlist, skipping any duplicates.
+8. You will see the status of each video being added or skipped in the console output.
+
+## Authentication procedure
+
+To authenticate with the YouTube API and obtain the necessary credentials, follow these steps:
+
+1. Create a project in the [Google Developer Console](https://console.developers.google.com/).
+2. Enable the YouTube Data API for your project.
+3. Create credentials for the project and download the `client_secret.json` file.
+4. Place the `client_secret.json` file in the project directory.
+5. Run the `main.py` script. It will guide you through the authentication process and generate the `credentials.pickle` file.
+
+Note: The `credentials.pickle` file will be used for subsequent authentication to avoid the need to authenticate every time you run the script.
 
 ## License
 
