@@ -1,6 +1,6 @@
 # YouTube Playlist Adder
 
-`YouTube Playlist Adder` is a Python script that allows you to create and manage playlists on YouTube by adding videos from a list of URLs. It uses the YouTube `Data API v3` to interact with the YouTube service.
+`YouTube Playlist Adder` is a Python script that allows you to create and manage playlists on YouTube by adding videos from a list of URLs using command line interface. It uses the YouTube `Data API v3` to interact with the YouTube service.
 
 ## Features
 
@@ -23,9 +23,8 @@ git clone https://github.com/sergiokapone/youtube_playlist_adder.git
 
 ## Usage
 
-1. Open the `config.ini` file and set the desired playlist name (`PLAYLIST`) and the path to the text file containing the video URLs (`URLS`).
-2. Ensure that you have a valid `client_secret.json` file in the project directory. If not, follow the instructions in the "Authentication" section below to obtain the required credentials.
-3. Populate the text file specified in `URLS` with the YouTube video URLs you want to add to the playlist. Each URL should be on a new line.
+1. Ensure that you have a valid `client_secret.json` file in the project directory. If not, follow the instructions in the "Authentication" section below to obtain the required credentials.
+2. Populate the text file with the YouTube video URLs you want to add to the playlist. Each URL should be on a new line.
 
 Example of `urls.txt`:
 
@@ -34,7 +33,26 @@ https://www.youtube.com/watch?v=VD8Xpl1_OM0
 https://www.youtube.com/watch?v=JOzhL0Y1GAE
 ```
 
-4. Run the `main.py` script using `python main.py`.
+4. Run the `main.py` script using the following command-line options:
+
+- `--download` or `-d`: Downloads the videos from the playlist to a file.
+- `--upload` or `-u`: Uploads videos from a file to the playlist.
+- `--playlist` or `-p`: Specifies the playlist name to use.
+
+Example usage:
+
+To download videos from the playlist with name `Playlist` to a file `urls.txt`:
+
+```shell
+python main.py -p PlayListName -d urls.txt
+```
+
+To upload videos from a file with name `Playlist` to a file `urls.txt`:
+
+```shell
+python main.py -p PlayListName -u urls.txt
+```
+
 5. The script will prompt you to authenticate with your YouTube account if necessary. Follow the instructions in the console to complete the authentication process.
 6. The script will create the playlist (if it doesn't exist) or use the existing playlist with the specified name.
 7. It will then add the videos from the URL list to the playlist, skipping any duplicates.

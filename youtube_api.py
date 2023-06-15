@@ -1,3 +1,4 @@
+import os
 from googleapiclient.discovery import build
 from urllib.parse import urlparse, parse_qs
 
@@ -63,8 +64,6 @@ def add_video_to_playlist(youtube, playlist_id, video_id):
         print(f"Video with ID {video_id} is already in the playlist.")
 
 
-import os
-
 def extract_video_id(url):
     # Extract video ID from URL
     parsed_url = urlparse(url)
@@ -76,3 +75,27 @@ def extract_video_id(url):
             video_id = video_id[0]
     return video_id
 
+
+def get_playlist_videos(youtube, playlist_id):
+    videos = []
+    next_page_token = None
+
+    while True:
+        playlist_items_response = youtube.playlistItems().list(
+            part="contentDetails",
+            playlistId=playlist_id,
+            maxResults=50,
+            pageToken=next_page_token
+        ).execute()
+
+        items = playlist_items_response.get("items", [])
+        for item in items:
+            video_id = item["contentDetails"]["videoId"]
+            videos.append(video_id)
+
+        next_page_token = playlist_items_response.get("nextPageToken")
+
+        if not next_page_token:
+            break
+
+    return videos
