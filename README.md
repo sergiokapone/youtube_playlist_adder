@@ -64,7 +64,6 @@ To authenticate with the YouTube API and obtain the necessary credentials, follo
 
 1. Create a project in the [Google Developer Console](https://console.developers.google.com/):
 
-- Go to the [Google Developer Console](https://console.developers.google.com/) website.
 - Sign in with your Google account or create a new account if needed.
 - Click on the "Select a project" dropdown at the top of the page and click the "+ New Project" button.
 - Enter a name for your project and click the "Create" button.
