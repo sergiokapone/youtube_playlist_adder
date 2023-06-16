@@ -67,33 +67,35 @@ playlist_name = args.playlist
 credentials = authenticate(scopes, client_secrets_file, credentials_file)
 youtube = create_youtube_client("youtube", "v3", credentials)
 
-try:
 
-    # Obtaining or creating a playlist
-    playlist_id = get_playlist_id(youtube, playlist_name)
-    if not playlist_id:
-        playlist_id = create_playlist(youtube, playlist_name)
+if __name__ == "__main__":
+    try:
 
-    # Downloading videos from playlist to a file
-    if args.download:
-        playlist_videos = get_playlist_videos(youtube, playlist_id)
-        with open(args.download, 'w') as f:
-            for video in playlist_videos:
-                url = f"https://www.youtube.com/watch?v={video}"
-                f.write(url + '\n')
-        logger.info(f"Videos downloaded successfully to {args.download}")
+        # Obtaining or creating a playlist
+        playlist_id = get_playlist_id(youtube, playlist_name)
+        if not playlist_id:
+            playlist_id = create_playlist(youtube, playlist_name)
 
-    # Uploading videos from a file to playlist
-    if args.upload:
-        with open(args.upload) as f:
-            youtube_urls = f.readlines()
-        for url in youtube_urls:
-            video_id = extract_video_id(url)
-            if video_id:
-                add_video_to_playlist(youtube, playlist_id, video_id)
-        logger.info(f"Videos uploaded successfully from {args.upload} to playlist")
+        # Downloading videos from playlist to a file
+        if args.download:
+            playlist_videos = get_playlist_videos(youtube, playlist_id)
+            with open(args.download, 'w') as f:
+                for video in playlist_videos:
+                    url = f"https://www.youtube.com/watch?v={video}"
+                    f.write(url + '\n')
+            logger.info(f"Videos downloaded successfully to {args.download}")
 
-except HttpError as e:
-    error_response = json.loads(e.content.decode("utf-8"))
-    error_code = error_response.get('error', {}).get('code')
-    logger.error(f"""An error occurred. Error code: {error_code}. The request cannot be completed because you have exceeded your quota.""")
+        # Uploading videos from a file to playlist
+        if args.upload:
+            with open(args.upload) as f:
+                youtube_urls = f.readlines()
+            for url in youtube_urls:
+                video_id = extract_video_id(url)
+                if video_id:
+                    add_video_to_playlist(youtube, playlist_id, video_id)
+            logger.info(f"Videos uploaded successfully from {args.upload} to playlist")
+
+    except HttpError as e:
+        error_response = json.loads(e.content.decode("utf-8"))
+        error_code = error_response.get('error', {}).get('code')
+        logger.error(f"""An error occurred. Error code: {error_code}. The request cannot be completed because you have exceeded your quota.""")
