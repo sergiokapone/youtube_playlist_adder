@@ -1,4 +1,4 @@
-# YouTube Playlist Adder <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"/>  
+# YouTube Playlist Adder <img align="center" width="32px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"/>  
 
 `YouTube Playlist Adder` is a Python script that allows you to create and manage playlists on YouTube by adding videos from a list of URLs using command line interface. It uses the YouTube `Data API v3` to interact with the YouTube service.
 
